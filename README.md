@@ -21,9 +21,12 @@ and such from the Sinergise API. The result is [data/sinergise-qa-output.json](d
 
 ## Brief QA Findings
 
+
+### Known issues
+
 Scenes with known issues are listed in the file [data/sinergise-qa-output.json](data/sinergise-qa-output.json).
 
-### 5 scenes with no tileDataGeometry
+#### 5 example scenes with no tileDataGeometry
 
 These are scenes that are missing the field `tileDataGeometry` in the `tileInfo.json` document.
 
@@ -36,7 +39,7 @@ These are scenes that are missing the field `tileDataGeometry` in the `tileInfo.
 These scenes tend to have a lot of water or other less-valuable data in them. Still, they
 can be included by failing over to `tileGeometry` when `tileDataGeometry` isn't present.
 
-### 5 scenes with zeros in cloud cover
+#### 5 example scenes with zeros in cloud cover
 
 These are scenes that have `0.0` in cloud cover in both level-2 and level-1 `tileInfo.json` documents.
 
@@ -48,20 +51,20 @@ These are scenes that have `0.0` in cloud cover in both level-2 and level-1 `til
 
 Almost all sampled scenes have valuable data, and usually heaps of it. It's very important to include these.
 
-### Scenes with bothe no tileDataGeometry and zero cloud cover
+#### Example scenes with both no tileDataGeometry and zero cloud cover
 
 These have both the cases above. I examined two just to see what's going on.
 
 * `tiles/32/N/NG/2020/6/23/0` - Tiny little sliver of valid data.
 * `tiles/32/P/MU/2020/6/8/0`  - 40% valid data, no cloud.
 
-### Scenes with no level-1 equivalent on the Sinergise API
+#### Scenes with no level-1 equivalent on the Sinergise API
 
 A number of scenes have `0.0` in the metadata in the `tileInfo.json` document and do not
 have a matching document in the level-1 archive on Sinergise's side. These were not
 examined.
 
-### Other QA scenes
+### Other QA scenes (todo)
 
 Those listed in [data/sinergise-qa-todo.json](data/sinergise-qa-todo.json). 
 
