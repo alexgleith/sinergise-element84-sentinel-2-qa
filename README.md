@@ -31,9 +31,12 @@ to the antimeridian and reprojection to WGS84.
 There are `136,838` scenes in the Sinergise list that are not in the Element 84 list. Reason for these missing
 scenes are explored below. Of these, `56,240` have known reasons for not being in the Element 84 listing as follows:
 
-* `5663` have no `tileDataGeometry` field.
+* `5,663` have no `tileDataGeometry` field.
 * `31,242` have `0.0` values for cloud in both level-2 and level-1 metadata
-* `20,777` have `0.0` values for cloud in level-2 and have no level-1 metadata
+* `20,777` have `0.0` values for cloud in level-2 and have no level-1 metadata.
+
+This leaves ~`80,000` scenes that don't have a clear reason for not being included.
+
 
 ### Known issues
 
