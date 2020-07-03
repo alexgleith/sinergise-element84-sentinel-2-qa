@@ -21,7 +21,11 @@ and such from the Sinergise API. The result is [data/sinergise-qa-output.json](d
 
 ## Brief QA Findings
 
+Scenes with known issues are listed in the file [data/sinergise-qa-output.json](data/sinergise-qa-output.json).
+
 ### 5 scenes with no tileDataGeometry
+
+These are scenes that are missing the field `tileDataGeometry` in the `tileInfo.json` document.
 
 * `tiles/39/P/WL/2017/10/29/0` - 5% valid data. Scene looks fine.
 * `tiles/39/P/WN/2019/11/18/0` - 5% valid data. Nearly all cloud.
@@ -34,6 +38,8 @@ can be included by failing over to `tileGeometry` when `tileDataGeometry` isn't 
 
 ### 5 scenes with zeros in cloud cover
 
+These are scenes that have `0.0` in cloud cover in both level-2 and level-1 `tileInfo.json` documents.
+
 * `tiles/40/M/DU/2019/2/9/0`  - 5% valid data. Scene is over water. No cloud!
 * `tiles/33/N/YG/2019/4/3/0`  - 40% valid data. No visible cloud. Some thin cloud in SCL.
 * `tiles/33/P/WK/2017/12/5/1` - 50% valid data. No visible cloud.
@@ -44,10 +50,31 @@ Almost all sampled scenes have valuable data, and usually heaps of it. It's very
 
 ### Scenes with bothe no tileDataGeometry and zero cloud cover
 
+These have both the cases above. I examined two just to see what's going on.
+
 * `tiles/32/N/NG/2020/6/23/0` - Tiny little sliver of valid data.
 * `tiles/32/P/MU/2020/6/8/0`  - 40% valid data, no cloud.
 
+### Scenes with no level-1 equivalent on the Sinergise API
+
+A number of scenes have `0.0` in the metadata in the `tileInfo.json` document and do not
+have a matching document in the level-1 archive on Sinergise's side. These were not
+examined.
+
 ### Other QA scenes
+
+Those listed in [data/sinergise-qa-todo.json](data/sinergise-qa-todo.json). 
+
+#### No georeferencing information
+
+Some scenes, such as `tiles/27/R/ZJ/2017/8/29/0`, do not have georeferencing information
+in the JP2000 files. These were not listed out due to the requirement to retrieve
+that information over the network.
+
+#### Other scenes with no clear QA
+
+These are scenes that are not in the Element84 inventory but that are in the Sinergise inventory
+and the reasons for their exclusion are unknown.
 
 * `tiles/36/G/XP/2017/10/21/0` - Over water, some cloud and 5% valid data.
 * `tiles/30/Q/WM/2019/3/19/0`  - Scene looks totally fine. Clear, full, georeferenced, in the middle of Africa.
