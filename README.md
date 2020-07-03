@@ -21,6 +21,15 @@ and such from the Sinergise API. The result is [data/sinergise-qa-output.json](d
 
 ## Brief QA Findings
 
+As of July 1, 2020, in our African region of interest there are `1,589,247` scenes in the Sinergise listing and `1,452,822` in
+the Element84 listing.
+
+There are `125` scenes in the Element 84 list that are not in the Sinergise list.
+This due to some scenes that cover the 0 and 60 UTM zones slipping in to the list due to issues relating
+to the antimeridian and reprojection to WGS84.
+
+There are `136,838` scenes in the Sinergise list that are not in the Element 84 list. Reason for these missing
+scenes are explored below.
 
 ### Known issues
 
