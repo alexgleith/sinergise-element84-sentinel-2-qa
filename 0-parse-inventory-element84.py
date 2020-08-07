@@ -11,7 +11,7 @@ import boto3
 s3 = boto3.resource("s3")
 
 bucket = "sentinel-cogs-inventory"
-manifest_key = "sentinel-cogs/sentinel-cogs/2020-06-28T00-00Z/manifest.json"
+manifest_key = "sentinel-cogs/sentinel-cogs/2020-07-27T00-00Z/manifest.json"
 
 print("Starting up...")
 
@@ -37,7 +37,7 @@ valid = 0
 log_every = 10000
 
 if __name__ == "__main__":
-    with open("data/element84-tiles.list", "w") as text_file:
+    with gzip.open("data/element84-tiles.list.gz", "wt") as text_file:
         for bucket, key, *rest in list_keys(bucket, manifest_key):
             if ".json" in key:
                 # Counting scenes

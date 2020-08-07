@@ -15,7 +15,7 @@ s3 = boto3.resource("s3")
 
 bucket = "sentinel-inventory"
 manifest_key = (
-    "sentinel-s2-l2a/sentinel-s2-l2a-inventory/2020-06-30T00-00Z/manifest.json"
+    "sentinel-s2-l2a/sentinel-s2-l2a-inventory/2020-07-27T00-00Z/manifest.json"
 )
 tile_list = "africa-mgrs-tiles.csv.gz"
 
@@ -24,10 +24,7 @@ region = "ap-southeast-2"
 # 41KKQ,41KKT
 tiles = []
 with gzip.open(tile_list) as f:
-    tiles = set([x.strip() for x in f.readlines()])
-
-print("Starting up...")
-
+    tiles = set([x.strip().decode('utf-8') for x in f.readlines()])
 
 def log(comment):
     sys.stdout.write(f"\r{comment}")
@@ -44,13 +41,12 @@ def list_keys(bucket, manifest_key):
             yield row
 
 
-limit = 2
 count = 0
 valid = 0
 log_every = 1000
 
 if __name__ == "__main__":
-    with open("data/sinergise-tiles.list", "w") as text_file:
+    with gzip.open("data/sinergise-tiles.list.gz", "wt") as text_file:
         for bucket, key, *rest in list_keys(bucket, manifest_key):
             if "tileInfo.json" in key:
                 # Counting scenes
